@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de cadastro para voluntários e apoiadores da ONG Exemplo.">
+    <meta name="keywords" content="Cadastro ONG, Formulário Voluntário, Inscrição Apoiador">
+    <title>ONG Exemplo | Cadastro de Voluntário/Apoiador</title>
+    </head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html">Projetos Sociais</a></li>
+                <li><a href="cadastro.html">Cadastre-se / Voluntariado</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Junte-se a Nós! Preencha o Formulário de Cadastro</h1>
+        <p>Seja parte da mudança. Preencha seus dados para receber oportunidades de voluntariado e informações sobre como apoiar nossos projetos.</p>
+        
+        <section id="formulario-cadastro">
+            <h2>Formulário de Inscrição</h2>
+            <figure>
+                <img src="assets/img/preenchendoformulario.jpg">
+                <figcaption>Seus dados estão seguros conosco.</figcaption>
+            </figure>
+            
+            <form action="/processa-cadastro" method="POST">
+
+                <fieldset>
+                    <legend>Dados Pessoais *</legend>
+
+                    <p>
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required 
+                               minlength="5" placeholder="Seu nome completo"
+                               aria-required="true">
+                    </p>
+                    
+                    <p>
+                        <label for="data-nascimento">Data de Nascimento:</label>
+                        <input type="date" id="data-nascimento" name="dataNascimento" required>
+                    </p>
+
+                    <p>
+                        <label for="cpf">CPF (apenas números):</label>
+                        <input type="text" id="cpf" name="cpf" required 
+                               pattern="[0-9]{11}" 
+                               title="O CPF deve conter 11 dígitos numéricos." 
+                               maxlength="11" placeholder="Ex: 12345678900">
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Informações de Contato *</legend>
+
+                    <p>
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="exemplo@dominio.com">
+                    </p>
+
+                    <p>
+                        <label for="telefone">Telefone (DDD + Número):</label>
+                        <input type="tel" id="telefone" name="telefone" required 
+                               pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}" 
+                               title="Formato: (99) 99999-9999 ou (99) 9999-9999"
+                               maxlength="15" placeholder="Ex: (99) 99999-9999">
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Endereço Residencial *</legend>
+
+                    <p>
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" required 
+                               pattern="[0-9]{5}-[0-9]{3}" 
+                               title="O CEP deve estar no formato XXXXX-XXX" 
+                               maxlength="9" placeholder="Ex: 01000-000">
+                    </p>
+
+                    <p>
+                        <label for="endereco">Endereço (Rua e Número):</label>
+                        <input type="text" id="endereco" name="endereco" required placeholder="Rua Exemplo, 123">
+                    </p>
+                    
+                    <p>
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" id="cidade" name="cidade" required placeholder="Sua Cidade">
+                    </p>
+
+                    <p>
+                        <label for="estado">Estado:</label>
+                        <select id="estado" name="estado" required>
+                            <option value="" disabled selected>-- Selecione o Estado --</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="SP">São Paulo</option>
+                        </select>
+                    </p>
+                </fieldset>
+                
+                <div>
+                    <button type="submit">Enviar Cadastro</button>
+                    <button type="reset">Limpar Formulário</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <address>
+            <p>Contato: (11) 98765-4321 | contato@ongexemplo.org.br</p>
+        </address>
+        <p><small>&copy; 2025 ONG Exemplo.</small></p>
+    </footer>
+</body>
+</html>
