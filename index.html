@@ -1,76 +1,696 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página inicial da ONG Exemplo - Missão, Visão, Valores e Contato.">
-    <meta name="keywords" content="ONG, Voluntariado, Doações, Ação Social, Missão">
-    <title>ONG Exemplo | Início - Transformando Vidas</title>
-    </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projetos.html">Projetos Sociais</a></li>
-                <li><a href="cadastro.html">Cadastre-se / Voluntariado</a></li>
-            </ul>
-        </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ONG Exemplo | Conformidade Atividade 2</title>
+    <link rel="stylesheet" href="./assets/css/global.css" />
+    <!-- Incluindo Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/index.js" defer></script>
+  </head>
+  <body>
+    <!-- HEADER: Estrutura de Navegação Fixa (Flexbox) -->
+    <header class="site-header">
+      <a
+        href="#"
+        class="text-3xl font-extrabold text-gray-900"
+        onclick="navigate('index'); return false;"
+      >
+        <span style="color: var(--color-primary-base)">ONG</span> Exemplo
+      </a>
+
+      <nav class="flex items-center space-x-4">
+        <!-- Links de navegação desktop (Hidden on mobile) -->
+        <a
+          href="#"
+          class="nav-link text-gray-600 hover:text-emerald-500 hidden lg:block"
+          data-page="index"
+          onclick="navigate('index'); return false;"
+          >Início</a
+        >
+
+        <!-- DROPDOWN: Navegação com Submenu (lg:block para desktop) -->
+        <div
+          class="dropdown-container hidden lg:block"
+          onmouseleave="hideDropdown('projects-dropdown')"
+          onmouseenter="showDropdown('projects-dropdown')"
+        >
+          <a
+            href="#"
+            class="nav-link text-gray-600 hover:text-emerald-500 flex items-center"
+            data-page="projetos"
+            onclick="navigate('projetos'); return false;"
+          >
+            Projetos Sociais
+            <!-- Ícone de seta -->
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </a>
+          <div id="projects-dropdown" class="dropdown-menu hidden">
+            <a
+              href="#"
+              onclick="navigate('projetos'); hideDropdown('projects-dropdown'); return false;"
+              >Todos os Projetos</a
+            >
+            <a
+              href="#"
+              onclick="alert('Funcionalidade Futura: Filtrar por Educação'); hideDropdown('projects-dropdown'); return false;"
+              >Educação</a
+            >
+            <a
+              href="#"
+              onclick="alert('Funcionalidade Futura: Filtrar por Voluntariado'); hideDropdown('projects-dropdown'); return false;"
+              >Voluntariado</a
+            >
+          </div>
+        </div>
+
+        <!-- Botão de Ação -->
+        <a
+          href="#"
+          class="btn-primary hidden lg:block"
+          data-page="cadastro"
+          onclick="navigate('cadastro'); return false;"
+          >Cadastre-se</a
+        >
+
+        <!-- Menu Hambúrguer (Mobile e Tablet) -->
+        <button
+          class="lg:hidden p-2 rounded-md hover:bg-gray-100"
+          aria-label="Menu Principal"
+          onclick="toggleMobileMenu()"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </nav>
     </header>
 
-    <main>
-        <section id="hero">
-            <h1>ONG Exemplo: Transformando Vidas Através da Educação</h1>
-            <figure>
-                <img src="assets/img/entregandodoações.webp">
-                <figcaption>Nossa missão em ação: educação e futuro.</figcaption>
-            </figure>
-            <p>Há mais de 10 anos, dedicamos nossos esforços para combater a desigualdade social na região X, focando no acesso à educação de qualidade para crianças e jovens.</p>
-        </section>
+    <!-- Menu Mobile Oculto -->
+    <nav
+      id="mobile-menu"
+      class="fixed top-20 left-0 right-0 bg-gray-900 text-white shadow-lg hidden z-50 lg:hidden"
+    >
+      <a
+        href="#"
+        class="block p-4 hover:bg-gray-700"
+        onclick="navigate('index'); toggleMobileMenu(); return false;"
+        >Início</a
+      >
+      <a
+        href="#"
+        class="block p-4 hover:bg-gray-700"
+        onclick="navigate('projetos'); toggleMobileMenu(); return false;"
+        >Projetos Sociais</a
+      >
+      <a
+        href="#"
+        class="block p-4 hover:bg-gray-700"
+        onclick="navigate('cadastro'); toggleMobileMenu(); return false;"
+        >Cadastre-se / Voluntariado</a
+      >
+    </nav>
 
-        <section id="missao-valores">
-            <h2>Nossa Missão, Visão e Valores</h2>
-            
-            <article>
-                <h3>Missão</h3>
-                <p>Promover o desenvolvimento integral de crianças e adolescentes em situação de vulnerabilidade social...</p>
-            </article>
-
-            <article>
-                <h3>Visão</h3>
-                <p>Ser referência nacional em projetos sociais inovadores e de alto impacto até 2030...</p>
-            </article>
-            
-            <article>
-                <h3>Valores</h3>
-                <ul>
-                    <li>Transparência</li>
-                    <li>Ética</li>
-                    <li>Inovação</li>
-                    <li>Comprometimento</li>
-                </ul>
-            </article>
-        </section>
-
-        <section id="equipe">
-            <h2>Conheça Nossos Gestores</h2>
-            <p>Acreditamos que a mudança começa com pessoas dedicadas...</p>
-            <figure>
-                <img src="assets/img/liderONG.jpg" width="600" height="400">
-                <figcaption>João da Silva - Presidente</figcaption>
-            </figure>
-        </section>
+    <!-- CONTEÚDO PRINCIPAL (Main) -->
+    <main class="main-content container mx-auto px-4">
+      <div id="page-content">
+        <!-- Conteúdo injetado pelo JavaScript -->
+      </div>
     </main>
 
-    <footer>
-        <h3>Informações de Contato</h3>
-        <address>
+    <!-- RODAPÉ SEMÂNTICO (Utiliza Grid Internamente) -->
+    <footer class="bg-gray-900 text-gray-300 p-6 lg:p-10 mt-10">
+      <div
+        class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm"
+      >
+        <div>
+          <h3 class="text-lg font-bold text-emerald-400 mb-3">
+            Informações de Contato
+          </h3>
+          <address class="not-italic">
             <p>Endereço: Rua da Ajuda, 1234 - Bairro Social, Cidade/UF</p>
-            <p>Telefone: <a href="tel:+5511987654321">(11) 98765-4321</a></p>
-            <p>E-mail: <a href="mailto:contato@ongexemplo.org.br">contato@ongexemplo.org.br</a></p>
+            <p>
+              Telefone:
+              <a href="tel:+5511987654321" class="hover:text-emerald-300"
+                >(11) 98765-4321</a
+              >
+            </p>
+            <p>
+              E-mail:
+              <a
+                href="mailto:contato@ongexemplo.org.br"
+                class="hover:text-emerald-300"
+                >contato@ongexemplo.org.br</a
+              >
+            </p>
             <p>CNPJ: 00.000.000/0001-00</p>
-        </address>
-        <p><small>&copy; 2025 ONG Exemplo. Todos os direitos reservados.</small></p>
+            <p>Dados para Transferência Bancária: (Dados no rodapé)</p>
+          </address>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-emerald-400 mb-3">Navegação</h3>
+          <ul>
+            <li>
+              <a
+                href="#"
+                onclick="navigate('index'); return false;"
+                class="hover:text-emerald-300"
+                >Início</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="navigate('projetos'); return false;"
+                class="hover:text-emerald-300"
+                >Projetos Sociais</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="navigate('cadastro'); return false;"
+                class="hover:text-emerald-300"
+                >Cadastre-se / Voluntariado</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="md:col-span-3 lg:col-span-1">
+          <h3 class="text-lg font-bold text-emerald-400 mb-3">Sobre</h3>
+          <p class="text-sm">
+            ONG Exemplo: Transformando Vidas Através da Educação e Ação Social.
+          </p>
+        </div>
+      </div>
+      <div class="text-center mt-8 pt-4 border-t border-gray-800">
+        <small>&copy; 2025 ONG Exemplo. Todos os direitos reservados.</small>
+      </div>
     </footer>
-</body>
+
+    <!-- ========================================================================= -->
+    <!-- TEMPLATES DE CONTEÚDO (Conteúdo Original dos 3 HTMLs) -->
+    <!-- ========================================================================= -->
+
+    <!-- Template 1: index.html (Página Inicial) -->
+    <template id="index-template">
+      <section id="hero" class="card-container bg-emerald-50">
+        <h1
+          class="font-extrabold text-emerald-600 mb-4"
+          style="font-size: var(--font-size-4xl)"
+        >
+          ONG Exemplo: Transformando Vidas Através da Educação
+        </h1>
+        <figure class="mb-6">
+          <img
+            src="./assets/img/entregandodoacoes.webp"
+            alt="Entregando Doações"
+          />
+          <figcaption class="text-sm text-gray-600 mt-2">
+            Nossa missão em ação: educação e futuro.
+          </figcaption>
+        </figure>
+        <p class="text-lg text-gray-700">
+          Há mais de 10 anos, dedicamos nossos esforços para combater a
+          desigualdade social na região X, focando no acesso à educação de
+          qualidade para crianças e jovens.
+        </p>
+      </section>
+
+      <!-- Aqui a custom-grid-12 é usada para demonstração de grid customizado -->
+      <section id="missao-valores" class="custom-grid-12 mt-8">
+        <div
+          class="card-container col-span-full md:col-span-2 lg:col-span-5 xl:col-span-8"
+        >
+          <h2
+            class="font-bold mb-3 text-emerald-600"
+            style="font-size: var(--font-size-2xl)"
+          >
+            Nossa Missão, Visão e Valores
+          </h2>
+
+          <article>
+            <h3
+              class="font-semibold mt-4"
+              style="font-size: var(--font-size-xl)"
+            >
+              Missão
+            </h3>
+            <p>
+              Promover o desenvolvimento integral de crianças e adolescentes em
+              situação de vulnerabilidade social...
+            </p>
+          </article>
+
+          <article>
+            <h3
+              class="font-semibold mt-4"
+              style="font-size: var(--font-size-xl)"
+            >
+              Visão
+            </h3>
+            <p>
+              Ser referência nacional em projetos sociais inovadores e de alto
+              impacto até 2030...
+            </p>
+          </article>
+
+          <article>
+            <h3
+              class="font-semibold mt-4"
+              style="font-size: var(--font-size-xl)"
+            >
+              Valores
+            </h3>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Transparência</li>
+              <li>Ética</li>
+              <li>Inovação</li>
+              <li>Comprometimento</li>
+            </ul>
+          </article>
+        </div>
+
+        <div
+          id="equipe"
+          class="card-container col-span-full md:col-span-2 lg:col-span-3 xl:col-span-4"
+        >
+          <h2 class="font-bold mb-3" style="font-size: var(--font-size-2xl)">
+            Conheça Nossos Gestores
+          </h2>
+          <p>Acreditamos que a mudança começa com pessoas dedicadas...</p>
+          <figure class="mt-4">
+            <img src="./assets/img/liderONG.jpg" alt="Líder da ONG" />
+            <figcaption class="text-base font-semibold mt-2">
+              João da Silva - Presidente
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </template>
+
+    <!-- Template 2: projetos.html (Projetos Sociais) -->
+    <template id="projetos-template">
+      <h1
+        class="font-extrabold text-gray-800 mb-8"
+        style="font-size: var(--font-size-4xl)"
+      >
+        Nossos Projetos e Iniciativas de Impacto Social
+      </h1>
+
+      <section id="projetos-atuais" class="card-container">
+        <h2
+          class="font-bold mb-4 text-emerald-600"
+          style="font-size: var(--font-size-2xl)"
+        >
+          Projetos em Destaque
+        </h2>
+        <p class="text-lg mb-6">
+          Conheça as iniciativas que estão transformando nossa comunidade hoje:
+        </p>
+
+        <div class="custom-grid-12">
+          <!-- Projeto 1 com Badges/Tags (lg:col-span-4 ocupa 4 de 12 colunas) -->
+          <article
+            class="p-4 border-l-4 border-emerald-500 bg-gray-50 rounded-lg shadow-sm col-span-full md:col-span-2 lg:col-span-4"
+          >
+            <div class="mb-3 flex flex-wrap gap-2">
+              <span class="badge badge-education">Educação</span>
+              <span class="badge badge-urgent">Urgente</span>
+            </div>
+            <h3
+              class="font-semibold text-emerald-700 mb-2"
+              style="font-size: var(--font-size-xl)"
+            >
+              Jovem Aprendiz Digital
+            </h3>
+            <figure class="mb-4">
+              <img
+                src="./assets/img/programando.jpg"
+                alt="Jovem aprendendo programação"
+              />
+              <figcaption class="text-xs text-gray-500">
+                Capacitação profissional para o mercado digital.
+              </figcaption>
+            </figure>
+            <p class="text-sm">
+              Oferecemos cursos de programação e design para jovens de 16 a 20
+              anos, visando a inserção no mercado de trabalho tecnológico.
+            </p>
+            <p class="text-sm font-semibold mt-2">
+              Status: Ativo. Pessoas impactadas: 150.
+            </p>
+            <a
+              href="#"
+              class="text-sm text-emerald-500 hover:text-emerald-700 font-medium mt-2 block"
+              >Ver Detalhes do Projeto</a
+            >
+          </article>
+
+          <!-- Projeto 2 (lg:col-span-4) -->
+          <article
+            class="p-4 border-l-4 border-emerald-500 bg-gray-50 rounded-lg shadow-sm col-span-full md:col-span-2 lg:col-span-4"
+          >
+            <div class="mb-3 flex flex-wrap gap-2">
+              <span class="badge badge-social">Social</span>
+            </div>
+            <h3
+              class="font-semibold text-emerald-700 mb-2"
+              style="font-size: var(--font-size-xl)"
+            >
+              Cantinho da Leitura
+            </h3>
+            <figure class="mb-4">
+              <img
+                src="./assets/img/cantinho-leitura.jpg"
+                alt="Biblioteca da ONG"
+              />
+              <figcaption class="text-xs text-gray-500">
+                Distribuição de livros e criação de bibliotecas comunitárias.
+              </figcaption>
+            </figure>
+            <p class="text-sm">
+              Distribuição de livros e criação de bibliotecas comunitárias em
+              áreas carentes...
+            </p>
+            <a
+              href="#"
+              class="text-sm text-emerald-500 hover:text-emerald-700 font-medium mt-2 block"
+              >Ver Detalhes do Projeto</a
+            >
+          </article>
+
+          <!-- Projeto 3 (Placeholder - lg:col-span-4) -->
+          <article
+            class="p-4 border-l-4 border-emerald-500 bg-gray-50 rounded-lg shadow-sm col-span-full lg:col-span-4"
+          >
+            <div class="mb-3 flex flex-wrap gap-2">
+              <span class="badge badge-education">Apoio Escolar</span>
+              <span class="badge badge-social">Comunitário</span>
+            </div>
+            <h3
+              class="font-semibold text-emerald-700 mb-2"
+              style="font-size: var(--font-size-xl)"
+            >
+              Mãos na Massa
+            </h3>
+            <figure class="mb-4">
+              <img
+                src="./assets/img/oficina-culinaria.jpg"
+                alt="Aulas de Culinária"
+              />
+              <figcaption class="text-xs text-gray-500">
+                Oficina de culinária e distribuição de refeições.
+              </figcaption>
+            </figure>
+            <p class="text-sm">
+              Oficinas de culinária e nutrição para famílias e distribuição
+              semanal de refeições.
+            </p>
+            <a
+              href="#"
+              class="text-sm text-emerald-500 hover:text-emerald-700 font-medium mt-2 block"
+              >Ver Detalhes do Projeto</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <section id="voluntariado" class="card-container mt-8">
+        <h2
+          class="font-bold mb-4 text-emerald-600"
+          style="font-size: var(--font-size-2xl)"
+        >
+          Seja um Voluntário
+        </h2>
+        <p class="text-lg mb-4">
+          O voluntariado é a força vital da nossa organização. Encontre a
+          oportunidade ideal para você:
+        </p>
+        <ul class="list-disc list-inside ml-4 space-y-2">
+          <li>
+            <strong>Voluntariado Educacional:</strong> Apoio escolar
+            (presencial/online).
+          </li>
+          <li>
+            <strong>Voluntariado Administrativo:</strong> Ajuda na gestão e
+            organização de eventos.
+          </li>
+          <li>
+            <strong>Voluntariado de Captação:</strong> Auxílio na busca por
+            novos parceiros.
+          </li>
+        </ul>
+        <a
+          href="#"
+          onclick="navigate('cadastro'); return false;"
+          class="btn-primary inline-block mt-6"
+          >Inscreva-se para ser Voluntário</a
+        >
+      </section>
+
+      <section id="doacoes" class="card-container mt-8">
+        <h2
+          class="font-bold mb-4 text-emerald-600"
+          style="font-size: var(--font-size-2xl)"
+        >
+          Como Doar e Apoiar
+        </h2>
+        <p class="text-lg mb-4">
+          Sua doação garante a continuidade e a expansão dos nossos projetos.
+          Qualquer valor faz a diferença.
+        </p>
+        <p>Você pode doar via:</p>
+        <ol class="list-decimal list-inside ml-4 space-y-1">
+          <li>Transferência Bancária (Dados no rodapé)</li>
+          <li>Pix (Chave: CNPJ da ONG)</li>
+          <li>
+            Sistema de Doações Online (Em breve, após a implementação de JS e
+            Backend).
+          </li>
+        </ol>
+        <a href="#" class="btn-secondary inline-block mt-6"
+          >Faça uma Doação Online (Link futuro)</a
+        >
+      </section>
+    </template>
+
+    <!-- Template 3: cadastro.html (Formulário) -->
+    <template id="cadastro-template">
+      <section id="formulario-cadastro" class="card-container">
+        <h1
+          class="font-extrabold text-gray-800 mb-2"
+          style="font-size: var(--font-size-4xl)"
+        >
+          Junte-se a Nós! Preencha o Formulário de Cadastro
+        </h1>
+        <p class="text-lg mb-6 text-gray-600">
+          Seja parte da mudança. Preencha seus dados para receber oportunidades
+          de voluntariado e informações sobre como apoiar nossos projetos.
+        </p>
+
+        <figure class="mb-6">
+          <img
+            src="./assets/img/preenchendoformulario.jpg"
+            alt="Preencha o formulário"
+          />
+          <figcaption class="text-sm text-gray-600 mt-2">
+            Seus dados estão seguros conosco.
+          </figcaption>
+        </figure>
+
+        <form id="original-form" onsubmit="handleFormSubmit(event)">
+          <fieldset>
+            <legend>Dados Pessoais *</legend>
+
+            <div class="mb-4">
+              <label for="nome" class="block font-medium mb-1"
+                >Nome Completo:</label
+              >
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                required
+                minlength="5"
+                placeholder="Seu nome completo"
+                aria-required="true"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="data-nascimento" class="block font-medium mb-1"
+                >Data de Nascimento:</label
+              >
+              <input
+                type="date"
+                id="data-nascimento"
+                name="dataNascimento"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="cpf" class="block font-medium mb-1"
+                >CPF (apenas números):</label
+              >
+              <input
+                type="text"
+                id="cpf"
+                name="cpf"
+                required
+                pattern="[0-9]{11}"
+                title="O CPF deve conter 11 dígitos numéricos."
+                maxlength="11"
+                placeholder="Ex: 12345678900"
+              />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Informações de Contato *</legend>
+
+            <div class="mb-4">
+              <label for="email" class="block font-medium mb-1">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="exemplo@dominio.com"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="telefone" class="block font-medium mb-1"
+                >Telefone (DDD + Número):</label
+              >
+              <input
+                type="tel"
+                id="telefone"
+                name="telefone"
+                required
+                pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}"
+                title="Formato: (99) 99999-9999 ou (99) 9999-9999"
+                maxlength="15"
+                placeholder="Ex: (99) 99999-9999"
+              />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Endereço Residencial *</legend>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="mb-4">
+                <label for="cep" class="block font-medium mb-1">CEP:</label>
+                <input
+                  type="text"
+                  id="cep"
+                  name="cep"
+                  required
+                  pattern="[0-9]{5}-[0-9]{3}"
+                  title="O CEP deve estar no formato XXXXX-XXX"
+                  maxlength="9"
+                  placeholder="Ex: 01000-000"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="endereco" class="block font-medium mb-1"
+                  >Endereço (Rua e Número):</label
+                >
+                <input
+                  type="text"
+                  id="endereco"
+                  name="endereco"
+                  required
+                  placeholder="Rua Exemplo, 123"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="mb-4">
+                <label for="cidade" class="block font-medium mb-1"
+                  >Cidade:</label
+                >
+                <input
+                  type="text"
+                  id="cidade"
+                  name="cidade"
+                  required
+                  placeholder="Sua Cidade"
+                />
+              </div>
+
+              <div class="mb-4">
+                <label for="estado" class="block font-medium mb-1"
+                  >Estado:</label
+                >
+                <select id="estado" name="estado" required>
+                  <option value="" disabled selected>
+                    -- Selecione o Estado --
+                  </option>
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="SP">São Paulo</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="flex justify-end space-x-4 mt-6">
+            <button type="reset" class="btn-secondary">
+              Limpar Formulário
+            </button>
+            <button type="submit" class="btn-primary">Enviar Cadastro</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Modal de Feedback (Acessibilidade) -->
+      <div
+        id="feedback-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+      >
+        <div
+          class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center"
+        >
+          <h3 class="text-2xl font-bold text-emerald-600 mb-3">
+            Cadastro Enviado!
+          </h3>
+          <p class="mb-6">
+            Obrigado por se juntar a nós. Em breve entraremos em contato.
+          </p>
+          <button class="btn-primary" onclick="closeModal()">Fechar</button>
+        </div>
+      </div>
+    </template>
+  </body>
 </html>

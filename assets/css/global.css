@@ -1,0 +1,299 @@
+/* ==========================================================
+1. DESIGN SYSTEM & VARIÁVEIS CSS (REQUISITO 1)
+========================================================== */
+:root {
+  /* Paleta de Cores (Mínimo 8 cores) */
+  --color-primary-base: #10b981; /* Emerald 500 */
+  --color-primary-dark: #059669; /* Emerald 600 */
+  --color-secondary-base: #3b82f6; /* Blue 500 - Para ênfase e links */
+  --color-secondary-dark: #2563eb; /* Blue 600 */
+  --color-neutral-lightest: #f3f4f6; /* Gray 100 - Background */
+  --color-neutral-light: #d1d5db; /* Gray 300 - Bordas */
+  --color-neutral-dark: #4b5563; /* Gray 600 - Texto secundário */
+  --color-neutral-darkest: #1f2937; /* Gray 800 - Texto principal */
+
+  /* Tipografia Hierárquica (Mínimo 5 tamanhos) */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-4xl: 2.25rem; /* H1 e Títulos */
+
+  /* Espaçamento Modular (Múltiplos de 8px) */
+  --spacing-xs: 8px; /* 0.5rem (Tailwind p-2) */
+  --spacing-sm: 16px; /* 1rem (Tailwind p-4) */
+  --spacing-md: 24px; /* 1.5rem (Tailwind p-6) */
+  --spacing-lg: 32px; /* 2rem (Tailwind p-8) */
+  --spacing-xl: 48px; /* 3rem (Tailwind p-12) */
+  --spacing-2xl: 64px; /* 4rem (Tailwind p-16) */
+}
+
+/* Estilos Globais e Tipografia */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-neutral-lightest);
+  color: var(--color-neutral-darkest);
+  line-height: 1.6;
+}
+h1 {
+  font-size: var(--font-size-4xl);
+}
+h2 {
+  font-size: var(--font-size-2xl);
+}
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+/* ==========================================================
+2. LAYOUT PRINCIPAL COM CSS GRID (REQUISITO 2)
+========================================================== */
+
+/* O body utiliza GRID para toda a estrutura, garantindo que o footer fique ao final */
+body {
+  display: grid;
+  /* Define 3 linhas: Header, Main (expansível), Footer */
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* O header fixo sai do fluxo normal do Grid do body */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Uso de Flexbox interno para alinhamento horizontal */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+}
+
+/* Estilo da área principal (GRID ROW 2) */
+.main-content {
+  /* Espaço para o header fixo */
+  padding-top: 100px;
+  /* Para que o main ocupe a linha 2 do grid do body */
+  grid-row: 2;
+}
+
+/* O footer ocupa a linha 3 e o final da página */
+footer {
+  grid-row: 3;
+}
+
+/* ==========================================================
+3. CSS GERAL E COMPONENTES
+========================================================== */
+
+/* Estilização básica para o conteúdo (cards, sections) */
+.card-container {
+  background-color: white;
+  padding: var(--spacing-md);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Responsividade para o grid interno (customizado de 12 colunas) */
+.custom-grid-12 {
+  display: grid;
+  gap: var(--spacing-sm);
+  grid-template-columns: 1fr; /* Padrão Mobile */
+}
+
+/* Breakpoints responsivos */
+/* sm: 640px */
+@media (min-width: 640px) {
+  .custom-grid-12 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* sm-only: Exemplo de breakpoint específico */
+}
+/* md: 768px */
+@media (min-width: 768px) {
+  .custom-grid-12 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .site-header {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+}
+/* lg: 1024px */
+@media (min-width: 1024px) {
+  .custom-grid-12 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+/* xl: 1280px */
+@media (min-width: 1280px) {
+  .custom-grid-12 {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+/* 2xl: 1536px */
+@media (min-width: 1536px) {
+  /* 5º Breakpoint, ajuste de layout */
+  .custom-grid-12 {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Formulário */
+#original-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+fieldset {
+  border: 1px solid var(--color-neutral-light);
+  padding: var(--spacing-md);
+  border-radius: 0.5rem;
+  margin-bottom: var(--spacing-md);
+}
+legend {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: var(--color-primary-base);
+}
+fieldset div {
+  padding: 0.5em;
+}
+input:not([type="checkbox"]),
+select#estado,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid var(--color-neutral-light);
+  border-radius: 0.2rem;
+  transition: border-color 0.2s;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-base);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+}
+
+/* Botões com estados visuais (hover, focus, active, disabled) */
+.btn-primary {
+  background-color: var(--color-primary-base);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+.btn-primary:focus {
+  box-shadow: 0 0 0 4px var(--color-secondary-base);
+  outline: none;
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-secondary {
+  background-color: var(--color-neutral-lightest);
+  color: var(--color-neutral-darkest);
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: 1px solid var(--color-neutral-light);
+  transition: background-color 0.2s;
+}
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+/* Classes para simular imagens */
+.placeholder-image {
+  width: 100%;
+  height: 250px;
+  background-color: #6ee7b7; /* Emerald 300 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-darkest);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================
+4. DROPDOWN E MENU MOBILE
+========================================================== */
+
+/* Container do Dropdown */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Abaixo do botão */
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  z-index: 100;
+  min-width: 200px;
+}
+.dropdown-menu a {
+  padding: 0.5rem 1rem;
+  display: block;
+  white-space: nowrap;
+  color: var(--color-neutral-darkest);
+}
+.dropdown-menu a:hover {
+  background-color: #f3f4f6;
+  color: var(--color-primary-base);
+}
+
+/* ==========================================================
+5. BADGES/TAGS
+ ========================================================== */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.badge-education {
+  background-color: #bfdbfe; /* Blue 200 */
+  color: #1e40af; /* Blue 800 */
+}
+.badge-social {
+  background-color: #d1fae5; /* Emerald 100 */
+  color: #065f46; /* Emerald 800 */
+}
+.badge-urgent {
+  background-color: #fecaca; /* Red 200 */
+  color: #991b1b; /* Red 800 */
+}
